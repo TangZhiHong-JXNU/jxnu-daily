@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#386958">
+  <title>师大 · 日常 | 校园工作台</title>
+  <link rel="icon" href="brand-favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="campus-ui.css">
+  <link rel="stylesheet" href="learning-info.css">
+  <link rel="stylesheet" href="campus-map/map.css">
+  <script defer src="data.js"></script>
+  <!-- 上传准备版默认仅使用本地工具，不加载实验云 SDK 或连接原服务。 -->
+  <script defer src="cloud-sync.js"></script>
+  <script defer src="freshman-guide.js"></script>
+  <script defer src="schedule-html.js"></script>
+  <script>if(!window._TMapSecurityConfig?.serviceHost||/__WB_[A-Z_]+__/.test(window._TMapSecurityConfig.serviceHost)){window._TMapSecurityConfig={serviceHost:'http://127.0.0.1:__WB_HTTP_PORT__/_TMapService/_wbt/__WB_TMAP_SECRET__'};}</script>
+  <script defer src="campus-map/vendor/studev/orientation-ball.js"></script>
+  <script defer src="campus-map/places.js"></script>
+  <!-- 同屏真实地图为唯一主实现；艺术展台不再覆盖 CampusMap。 -->
+  <script defer src="campus-map/map.js"></script>
+  <script defer src="schedule-rules.js"></script>
+  <script defer src="ui-icons.js"></script>
+  <script defer src="brand.js"></script>
+  <script defer src="learning-info-data.js"></script>
+  <script defer src="learning-info.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a href="#home" class="brand"><span class="brand-mark" aria-hidden="true">JXNU</span><span>师大 · 日常<small>JXNU · CAMPUS JOURNAL</small></span></a>
+    <button id="sidebar-toggle" class="sidebar-toggle" aria-expanded="true" aria-controls="sidebar-panel" aria-label="收起左侧栏目">‹</button>
+    <div id="sidebar-panel" class="sidebar-panel"><span class="nav-caption">校园信息</span><div class="sidebar-overview" aria-label="本机课程与电费摘要"></div></div>
+    <span class="nav-caption sidebar-nav-label">切换窗口</span>
+    <nav id="navigation" aria-label="主要导航"></nav>
+    <div class="sidebar-note"><span class="status-dot"></span> 轻装学习<p>课程、待办，顺手整理。</p></div>
+    <button class="about-link" data-action="about">关于与数据来源 ↗</button>
+  </aside>
+  <div class="shell">
+    <header class="topbar"><div><span class="eyebrow">A LITTLE MORE ORGANIZED</span><h1 id="page-title">校园工作台</h1></div><div class="top-actions"><span class="badge" id="network">本地优先 · 网络待检测</span><button data-action="data" class="icon-button" aria-label="数据管理">数据管理</button><a href="#profile" class="avatar" aria-label="我的：本机访客">本</a></div></header>
+    <div id="storage-warning" class="warning" role="alert" hidden></div>
+    <div id="focus-save-warning" class="warning" role="alert" hidden>专注结算尚未保存，原存档仍保留。检查存储空间后可重试，或先导出本轮数据。<button data-action="focus-retry-save">重试保存专注</button><button data-action="export">导出当前 JSON</button></div>
+    <main id="content"></main>
+    <footer class="page-footer">为校园里的每一个普通日常而做。<span>v0.2.7 · 非官方 · 演示版 · 数据与功能说明见“关于”</span></footer>
+  </div>
+  <dialog id="modal" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title"></h2><button class="icon-button" data-action="close" aria-label="关闭对话框">×</button></div><div id="modal-body"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <input type="file" id="import-file" accept="application/json,.json" hidden>
+  <noscript>请启用 JavaScript。此应用使用本地经典脚本，不需要安装或登录。</noscript>
+</body>
+</html>

@@ -1,0 +1,40 @@
+师大·日常 / 公开空白源码版 / 2026-11-26
+
+1. 集成代码许可
+第一方应用源码及本项目对南邮方向球的派生修改采用 AGPL-3.0-or-later。根 LICENSE.txt 为 GNU Affero General Public License v3 全文。无适销性、特定用途或其他担保。对本版本进行公开网络部署时，须向交互用户提供运行版本对应源码；目录分离不豁免此义务。
+
+2. 实际复用：NJUPT-CS-StuDev/studev 方向球
+上游：https://github.com/NJUPT-CS-StuDev/studev
+固定提交：cf85eec1182583a030b57d09073c27e67c9298b9
+原文件：src/campus/map/ball.ts
+上游声明 AGPL-3.0-or-later。保留 vendor/studev 下原文、LICENSE.txt、origin.json、orientation-ball.js。
+2026-11-20 修改：移除 TypeScript 类型与模块导出，使用 IIFE 暴露 CampusOrientationBall；保留投影与北向算法，补中文注释及来源。没有复制他校模型、地图数据、商标或整套路由引擎。上游未声明个人 author，不推定个人身份。
+
+3. 实际复用：Tabler Icons
+来源：https://github.com/tabler/tabler-icons
+使用位置：ui-icons.js 中的 SVG 路径，保留原文件的来源说明。
+许可：MIT；完整版权及许可位于 tabler-icons-LICENSE.txt。不得因匿名化偏好而移除法定版权署名。
+
+4. 地图 SDK 与公开地点
+使用腾讯地图 GL JS 官方 SDK，外部按需加载、不随本项目复制实现。其服务条款及地图数据权利独立于 AGPL。前端不内置可用 key；服务端凭据只由环境注入。
+campus-map/places.js 为五处公开校园 POI（GCJ-02）及历史查询文字留样。核对日期随条目保留；POI不等于入口、楼层或教室。没有公开个人位置、课程或宿舍身份。外部学校地图只链接不转载。
+地图原型的场景组织、相机操作曾参考上游 scene.ts / MapApp.tsx / models.ts 和 three.js r180 OrbitControls 的方法；除上述方向球外未复制这些实现，也不包含 three.js 依赖或建筑资产。
+
+5. 校园水彩与标识
+campus-art 的三张 WebP 为文本生成的校园意象，非官方图片、实景摄影或精确复刻；球场修订仅使用本项目生成图，未上传或嵌入用户提供的第三方参考图。sources.json 保留详细生成与修订来源。
+本地保留画面不等于已核清对所有公开渠道的分发条件；生成服务适用条款仍需核验，不保证排他版权，不将 AGPL 扩大到第三方或生成素材的全部权利。
+翻页 JXNU 是非官方项目字标，不是学校校徽或学校授权商标；不承诺商标检索完成或排他权。
+
+6. 仅参考方法，未作为库引入
+Huashu Design：版心、书脊、旁注与内容/工具分层。
+StPageFlip：书脊变换原点与静态/活动页分层。
+Vivus：SVG 描边及时序。Rough Notation：轻量纸上标注与减少动态。
+Lucide：先前图标几何方法研究；本项目实际通用图标仍为 Tabler。
+时段边界沿用本地设计稿；campus-frontend-template、room-tba、notice-hub、Campus-Market 只作为早期设计思路参考，没有导入其源码或数据，未将旧清单许可记载当作本次审计结果。
+
+7. 天气与学习资料
+天气仅由用户点击后请求 Open-Meteo，区域参考值非校园实测，不使用 GPS。天气数据按界面保留 Open-Meteo / CC BY 4.0 署名；未请求时为明确固定演示值。本次整理未联网验收天气接口。
+学习信息目录保留各条来源与历史周期边界，收录网页链接不等于取得其内容转载授权。真实资格、分级、加分与截止以学校/学院当届正式通知为准。
+
+8. 实验云代码与版本范围
+本副本默认不启用云同步，不加载外部云SDK，所有部署标识均为占位。保留实现不等于登录、权限、双设备及恢复可靠性已验收；忽略 backup/apply 返回值的历史分支尚未修复，不应直接启用。此为独立准备副本，不代表原根应用、web-release、桌面版或线上网站已同步修改。

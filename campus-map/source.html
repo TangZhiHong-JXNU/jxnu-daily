@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>代码、地图与素材来源 · 师大日常</title>
+<link rel="icon" href="../brand-favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<main class="shell">
+  <section class="card">
+    <p>师大 · 日常 / 非官方校园工具 / 公开空白源码版</p>
+    <h1>代码、地图与素材来源</h1>
+    <p>本副本由较新的本地应用整理，保留课表规则、待办与专注关联，以及六时段校园视觉。不含原作者的个人数据，也不更新原应用或线上网站。</p>
+    <p><a href="../#home">返回工作台</a> · <a href="index.html">打开独立地图</a></p>
+    <h2>本版本对应源码</h2>
+    <p><a href="campus-map-source.zip" download>下载本地服务当前对应源码 ZIP</a>。使用随附 Node 服务时，归档由精确白名单在内存中生成；修改代码后重启服务，不读取旧 ZIP、个人存档或环境凭据。静态托管或文件双击不提供此动态下载，请在本地执行 <code>node campus-map/package-source.cjs</code> 后随该版本一同提供归档。</p>
+    <p><a href="https://github.com/TangZhiHong-JXNU/jxnu-daily" target="_blank" rel="noopener noreferrer">项目仓库</a>目前不保证已包含这份本地准备副本。任何公开部署须同时提供与运行版本一致的对应源码，不以仓库已有 README 代替本版本源码。</p>
+    <h2>实际复用的代码与许可</h2>
+    <p>本集成版本的第一方应用源码及派生修改版采用 <strong>AGPL-3.0-or-later</strong>，按原样提供、不附担保。<a href="../LICENSE.txt">根许可证全文</a>；<a href="../THIRD-PARTY-NOTICES.txt">完整来源说明</a>。第三方 SDK、地理数据、图片与标识的权利不因本源码许可而改变。</p>
+    <ul>
+      <li>方向球实际改造自 <a href="https://github.com/NJUPT-CS-StuDev/studev/tree/cf85eec1182583a030b57d09073c27e67c9298b9" target="_blank" rel="noopener noreferrer">NJUPT-CS-StuDev/studev 固定提交</a>的 <code>src/campus/map/ball.ts</code>。2026-11-20 移除 TypeScript 类型和模块导出，改为经典脚本 IIFE；保留球面投影与北向算法。没有移植整套地图引擎、他校建筑或地理数据。</li>
+      <li><a href="vendor/studev/ball.ts.source.txt">上游原文</a>、<a href="vendor/studev/orientation-ball.js">修改版</a>、<a href="vendor/studev/LICENSE.txt">AGPL 全文</a>、<a href="vendor/studev/origin.json">提交与改造记录</a>均随附。</li>
+      <li>通用 UI 图标采用 Tabler Icons，保留 <a href="../tabler-icons-LICENSE.txt">MIT 完整版权与许可</a>。其他仅作方法研究的库不作为本版本运行依赖。</li>
+    </ul>
+    <h2>地图与公开地点</h2>
+    <p>唯一底图为腾讯地图 GL JS 官方 SDK，按需从官方站点加载。坐标系 GCJ-02；<a href="places.js">地点索引</a>只含惟义楼、实验大楼、图书馆、青蓝门、先骕楼五处公共 POI。首次核对为2026-11-20，双楼复核为2026-11-24，不冒称今天重新查询。442米／约7分钟等文字是历史留样，不是本次导航。</p>
+    <p>未配置有效代理时保留地点列表，并明确停用站内查路。不内置地图密钥，不申请站内 GPS；不提供楼层、入口、教室定位或测绘建筑复原。仅绘制官方 Walking 实际返回且通过格式和范围检查的轨迹，不用直线补路线。</p>
+    <p>HTML 保留运行环境安全代理占位符；普通 HTTP 服务默认没有地图凭据。可选自托管代理仅从服务器环境读取 <code>TENCENT_MAP_KEY</code>、<code>TENCENT_MAP_SK</code>、<code>CAMPUS_PUBLIC_ORIGIN</code>。上传到 GitHub 不会开通地图；静态 GitHub Pages 不能运行此 Node 代理。公开上线前需自行完成域名限制、配额控制与真实服务验收。</p>
+    <p><a href="https://www.jxnu.edu.cn/2025/0929/c13362a281344/page.htm" target="_blank" rel="noopener noreferrer">学校官方地图页</a>只作站外链接，未转载整张官方地图。</p>
+    <h2 id="brand">校园视觉与品牌</h2>
+    <p>保留完整翻页 JXNU 字标、浅纸和六时段淡彩。字标为本项目的非官方设计，不是学校校徽或学校授权标识，不承诺商标排他权。Huashu Design、StPageFlip、Vivus、Rough Notation 仅作排版、变换与动画方法参考，没有作为库复制或安装；Lucide 亦仅作先前方法研究。</p>
+    <p>三张校园水彩为文本提示生成的校园意象，不是实景摄影、学校官方图片或精确复刻；球场修订仅使用本项目生成图。未嵌入他人的审美参考图。<a href="../campus-art/sources.json">生成来源记录</a>随附；生成服务适用条款和公开分发条件尚需核验，不承诺排他版权。此项保留为正式公开前的素材核验事项，而非宣称全部素材许可已核清。</p>
+    <h2>本地数据与实验云代码</h2>
+    <p>默认课程、待办、占用、电费截图为空，存储键与原项目隔离。电费默认个人空白模式，选择演示后才展示只在内存的虚构余额。生活圈只读示例和天气固定值均有明确标记。</p>
+    <p>云同步默认硬关闭，配置均为占位且不加载云 SDK。保留的实验代码仍有未核验恢复分支及权限边界，不可只填配置即当作可上线功能。本版本不连接原作者服务；请使用 JSON 手动备份。</p>
+    <p><a href="../README.md">运行与开发说明</a> · <a href="../#home">返回工作台</a></p>
+  </section>
+</main>
+</body>
+</html>

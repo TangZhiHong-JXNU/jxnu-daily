@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#eef3ee">
+  <title>瑶湖校园地图 · 师大日常</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23386958'/%3E%3Cpath d='M8 25V11l8-5 8 5v14M5 25h22M13 13h2m3 0h2m-7 5h2m3 0h2' fill='none' stroke='%23fffdf7' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="map.css">
+  <script>
+    // 运行环境替换代理占位符；不将地图密钥放进前端。
+    if (!window._TMapSecurityConfig?.serviceHost || /__WB_[A-Z_]+__/.test(window._TMapSecurityConfig.serviceHost)) {
+      window._TMapSecurityConfig = {
+        serviceHost: 'http://127.0.0.1:__WB_HTTP_PORT__/_TMapService/_wbt/__WB_TMAP_SECRET__'
+      };
+    }
+  </script>
+  <script defer src="vendor/studev/orientation-ball.js"></script>
+  <script defer src="places.js"></script>
+  <script defer src="map.js"></script>
+</head>
+<body class="cm-standalone">
+  <main>
+    <p class="cm-wordmark">师大 · 日常 / 非官方校园工具</p>
+    <div id="campus-map-root"></div>
+  </main>
+  <noscript>请启用 JavaScript。地图需要网络，地点列表仅含公开建筑信息。</noscript>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const host = document.getElementById('campus-map-root');
+      if (!window.CampusMap) { host.textContent = '地图模块未加载，请检查文件是否完整。'; return; }
+      // 只读取片段中的公开建筑ID；不接受课程、教室、任意URL或代理配置。
+      const fragment = new URLSearchParams(location.hash.slice(1));
+      const placeId = fragment.getAll('campus-place').length === 1 ? fragment.get('campus-place') : '';
+      const place = window.CampusPlaces?.places.find(item => item.id === placeId);
+      const locationText = place?.name || '';
+      const embedded = window.parent !== window && fragment.get('campus-embed') === '1';
+      if (embedded) document.body.classList.add('cm-embedded');
+      host.innerHTML = window.CampusMap.shell({locationText});
+      const dispose = window.CampusMap.mount(host, {locationText});
+      // 父页面只能订阅固定状态和高度，不能发起任意查路或更改代理。
+      let peer = null, updateFrame = null;
+      function report() {
+        updateFrame = null;
+        if (!peer) return;
+        const root = host.querySelector('.cm-app');
+        const diagnostic = root?.dataset.cmDiagnostic;
+        const output = host.querySelector('[data-cm-route-output]');
+        let state = 'connecting';
+        if (diagnostic === 'ready') {
+          state = root.dataset.cmRouteDiagnostic ? 'route-failed' : output?.querySelector('strong') ? (output.textContent.includes('已绘制服务返回路线') ? 'route-ready' : 'route-text') : 'ready';
+        } else if (diagnostic === 'proxy-unavailable') state = 'missing';
+        else if (diagnostic && !['sdk-loading','map-create','tiles-loading'].includes(diagnostic)) state = 'failed';
+        const height = Math.max(320, Math.min(2400, Math.ceil(document.body.getBoundingClientRect().height)));
+        peer.source.postMessage({type:'campus-map:status',version:1,state,height}, peer.origin);
+      }
+      function scheduleReport() { if (updateFrame === null) updateFrame = requestAnimationFrame(report); }
+      const onMessage = event => {
+        if (!embedded || event.source !== window.parent || event.data?.type !== 'campus-map:connect' || event.data?.version !== 1) return;
+        let origin;
+        try { origin = new URL(event.origin); } catch { return; }
+        if (origin.origin !== event.origin || !['http:','https:'].includes(origin.protocol)) return;
+        peer = {source:event.source,origin:event.origin}; scheduleReport();
+      };
+      const observer = new MutationObserver(scheduleReport);
+      const sizeObserver = typeof ResizeObserver === 'function' ? new ResizeObserver(scheduleReport) : null;
+      if (embedded) {
+        addEventListener('message', onMessage);
+        observer.observe(host, {subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['data-cm-diagnostic','data-cm-route-diagnostic']});
+        sizeObserver?.observe(document.body);
+        addEventListener('resize', scheduleReport);
+      }
+      const onShow = event => { if (event.persisted) scheduleReport(); };
+      addEventListener('pageshow', onShow);
+      addEventListener('pagehide', event => {
+        // 浏览器后退缓存保留原实例，恢复时重新报告；真正卸载才销毁。
+        if (event.persisted) return;
+        observer.disconnect(); sizeObserver?.disconnect();
+        removeEventListener('message', onMessage); removeEventListener('resize', scheduleReport); removeEventListener('pageshow', onShow);
+        if (updateFrame !== null) cancelAnimationFrame(updateFrame);
+        peer = null; dispose();
+      });
+    });
+  </script>
+</body>
+</html>

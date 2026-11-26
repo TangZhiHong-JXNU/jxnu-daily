@@ -1,0 +1,14 @@
+{
+  "name": "jxnu-daily",
+  "version": "0.2.7-source.20261126",
+  "private": true,
+  "description": "师大·日常：非官方校园日常工具网页，公开空白源码版。",
+  "license": "AGPL-3.0-or-later",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server.cjs",
+    "check": "node check.cjs",
+    "test": "node --test source-smoke.test.cjs",
+    "source": "node campus-map/package-source.cjs"
+  }
+}

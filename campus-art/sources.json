@@ -1,0 +1,14 @@
+{
+  "kind": "AI-generated campus-inspired watercolor artwork",
+  "createdOn": "2026-11-18",
+  "generationInput": "Original generation used text prompts only; user-supplied third-party reference images were not uploaded or embedded. The sports artwork was locally revised on 2026-11-19 using only this project's original AI-generated four-panel artwork as the image-to-image input.",
+  "updatedOn": "2026-11-19",
+  "description": "三组全新生成的校园意象水彩；并非江西师范大学实景精确复刻、学校官方图片或摄影实拍。四幅主画对应清晨、白天、晚霞、夜景；六时段由现有应用配置映射。",
+  "rightsNotice": "保留生成来源标识；不承诺排他版权或学校官方授权。公开分发前仍应按生成服务适用条款核查使用条件。",
+  "conversion": "Original four-panel images re-encoded to WebP at quality 0.9 using browser Canvas. No reference-photo filtering or watermark removal.",
+  "assets": [
+    {"file": "album.webp", "scene": "校园画册：红砖建筑与湖面", "source": "design-demos/Create_ONE_high_quality_ORIGIN_2026-11-18T14-01-36.png"},
+    {"file": "lake.webp", "scene": "静湖日光：湖岸、小桥与树影", "source": "design-demos/Create_ORIGINAL_watercolor_ill_2026-11-18T14-35-38.png"},
+    {"file": "sports.webp", "scene": "放学后的天空：足球场、篮球场与大天空", "source": "design-demos/Fix_ONLY_the_nearest_right_han_2026-11-19T05-48-09.png", "originalSource": "design-demos/Create_ORIGINAL_high_end_water_2026-11-18T14-35-52.png", "revision": {"date": "2026-11-19", "method": "AI image-to-image revisions using only the project's generated atlas; retained 2x2 day/night layout and provenance mark", "scope": "二次核准球场纵向透视：四时段近端篮板统一背面朝向镜头，篮圈朝场内纵深并自然遮挡；后支撑位于镜头侧，短篮架与独立高灯杆分离。保留水彩球场及天空构图。", "previousSources": ["design-demos/Edit_this_ORIGINAL_AI_generate_2026-11-19T04-52-55.png", "design-demos/Precise_localized_structural_c_2026-11-19T05-46-39.png"]}}
+  ]
+}

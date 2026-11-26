@@ -1,0 +1,52 @@
+{
+  "repository": "https://github.com/NJUPT-CS-StuDev/studev",
+  "commit": "cf85eec1182583a030b57d09073c27e67c9298b9",
+  "license": "AGPL-3.0-or-later",
+  "licenseEvidence": "固定提交的 package.json 中 license 字段为 AGPL-3.0-or-later，LICENSE 为 GNU Affero General Public License Version 3 完整文本。",
+  "author": null,
+  "authorEvidence": "固定提交的 package.json 不含 author 字段；ball.ts 不含个人作者或版权声明。未推定作者身份。",
+  "modifiedDate": "2026-11-20",
+  "sources": [
+    {
+      "path": "LICENSE",
+      "url": "https://github.com/NJUPT-CS-StuDev/studev/blob/cf85eec1182583a030b57d09073c27e67c9298b9/LICENSE",
+      "rawUrl": "https://raw.githubusercontent.com/NJUPT-CS-StuDev/studev/cf85eec1182583a030b57d09073c27e67c9298b9/LICENSE",
+      "blobSha": "fe6b9036ba1818c79c15f802a586a9711ece2b97",
+      "localFile": "LICENSE.txt",
+      "changes": []
+    },
+    {
+      "path": "src/campus/map/ball.ts",
+      "url": "https://github.com/NJUPT-CS-StuDev/studev/blob/cf85eec1182583a030b57d09073c27e67c9298b9/src/campus/map/ball.ts",
+      "rawUrl": "https://raw.githubusercontent.com/NJUPT-CS-StuDev/studev/cf85eec1182583a030b57d09073c27e67c9298b9/src/campus/map/ball.ts",
+      "blobSha": "96b6293ebdf8657c1fee9ad9a9b9961a197a24ae",
+      "localFile": "ball.ts.source.txt",
+      "changes": []
+    },
+    {
+      "path": "package.json",
+      "url": "https://github.com/NJUPT-CS-StuDev/studev/blob/cf85eec1182583a030b57d09073c27e67c9298b9/package.json",
+      "blobSha": "6b947ef51ce685ade6351315b766c15a06f1b141",
+      "extractedFields": {
+        "license": "AGPL-3.0-or-later",
+        "authorPresent": false,
+        "author": null
+      }
+    }
+  ],
+  "adaptation": {
+    "file": "orientation-ball.js",
+    "derivedFrom": "src/campus/map/ball.ts",
+    "license": "AGPL-3.0-or-later",
+    "globalExport": "window.CampusOrientationBall",
+    "exports": ["orientationBall", "RADIUS"],
+    "radius": 15,
+    "changes": [
+      "移除 Point 元组类型及全部参数、返回值 TypeScript 类型标注。",
+      "移除 ES 模块 export，使用严格模式经典 JavaScript IIFE 封装。",
+      "通过 window.CampusOrientationBall 暴露 orientationBall 和 RADIUS。",
+      "保留原方位与俯仰投影、每 4 度采样赤道可见半圈、两位小数 SVG 路径和球缘北向标记算法。",
+      "将算法说明替换为中文注释，补充来源、固定提交、许可证 SPDX 和 2026-11-20 修改声明。"
+    ]
+  }
+}
