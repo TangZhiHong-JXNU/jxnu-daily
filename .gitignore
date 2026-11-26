@@ -1,0 +1,47 @@
+# 系统、编辑器与个人工作记录
+.DS_Store
+Thumbs.db
+Desktop.ini
+.workbuddy/
+.vscode/
+.idea/
+
+# 凭据与部署私有配置；源码不自动加载 .env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+cloud-config.local.*
+*.local.json
+
+# 安装、构建和临时输出（本项目无需 npm install）
+node_modules/
+dist/
+build/
+coverage/
+output/
+*.log
+*.tmp
+*.building
+
+# 个人业务导入、导出与备份，切勿替换公开 data.js 后提交
+backups/
+imports/
+exports/
+private/
+browser-profile/
+*backup*
+campus-workspace-*.json
+campus-schedule-*.ics
+*.har
+*.jsonl
+data.json
+
+# 源码归档由白名单脚本现场生成，不把旧 ZIP 当作当前源码
+*.zip
+
+# data.js 是刻意保留的公开空白种子；不要在其中写入真实个人数据。
+# .gitignore 不会移除已经进入 Git 历史的文件，也不是隐私审计器。
